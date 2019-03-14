@@ -35,7 +35,7 @@ function prompt() {
       } else if(answer.action === "Add to Inventory") {
         addMore();
       } else if(answer.action === "Add New Product") {
-        bidAuction();
+        addNew();
       } else{
         connection.end();
       }
@@ -105,6 +105,54 @@ function addMore() {
           function(error) {
             if (error) throw err;
             console.log("Stock updated successfully!");
+            prompt();
+          }
+        );
+      
+    });
+  });
+}
+
+//display a prompt that will let the manager "add more" of any item currently in the store.
+function addNew() {
+  connection.query("SELECT * FROM bamazon.products", function(err, results) {
+    if (err) throw err;
+    // prompt the user for which they'd like to add more to
+    inquirer
+      .prompt([
+        {
+          name: "prodName",
+          type: "input",
+          message: "Enter a product name:"
+        },
+        {
+          name: "departmentName",
+          type: "input",
+          message: "Enter a department name:"
+        },
+        {
+          name: "price",
+          type: "input",
+          message: "Enter a price:"
+        },
+        {
+          name: "stockNum",
+          type: "input",
+          message: "Enter the stock quantity:"
+        }
+      ])
+      .then(function(answer) {
+        connection.query(
+          "INSERT INTO products SET ?",
+          {
+            product_name: answer.prodName,
+            department_name: answer.departmentName,
+            price: answer.price,
+            stock_quantity: answer.stockNum
+          },
+          function(error) {
+            if (error) throw err;
+            console.log("New product added successfully!");
             prompt();
           }
         );
