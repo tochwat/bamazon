@@ -3,7 +3,7 @@ CLI storefront
 
 
 ### Overview
-This is an Amazon-like storefront powered by node and using the CLI. 
+Bamazon is a node Amazon-like storefront that uses a mySQL database. The app lets you place orders and manage inventory.
 
 ### What Each View Does
 
