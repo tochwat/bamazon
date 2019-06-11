@@ -44,3 +44,14 @@ This is an Amazon-like storefront powered by node and using the CLI.
 * If a manager selects Add New Product, it should allow the manager to add a completely new product to the store.
 
 ![add new](/gifs/addNew.gif)
+
+
+### Running the App
+
+* Clone the repo
+
+* Install NPM packages
+
+* Run schema.sql in MySQL Workbench or your MySQL client of choice
+
+* Run bamazonCustomer.js or bamazonManager.js in your command line
